@@ -5,24 +5,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CSS/styles.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap'
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
     </style>
+    <link rel="stylesheet" href="/CSS/styles.css">
     <title>Quiz</title>
 </head>
 
 <body>
 
-
+ 
     <div class="container">
         <button class="button show-quiz-btn">Start Quiz</button>
 
         <div class="container-quiz">
 
-            <!-- container-vragen bevat alle vragen en antwoorden. Toont 1e of current vraag.
-        antwoorden -->
-            <div class="container-questions">
+            <!-- container-vragen bevat alle vragen en antwoorden. Toont 1e of current vraag. antwoorden -->
+            <div class="container-all">
                 <h2>Math Problem</h2>
                 <p class="count-numbers">1/6 etc</p>
 
@@ -30,29 +29,29 @@
                 <div class="print-question">Laadt vraag per klik.
                 </div>
                 <!-- array met alle vragen en antwoorden en goed en fout. function for each.-->
-                
-                    <div class="answers answer-1">1</div>
-                    <div class="answers answer-2">2</div>
-                    <div class="answers answer-3">3</div>
-                    <div class="answers answer-4">4</div>
-                    <div class="answers answer-5">5</div>
-                
-                <!-- /*selecteer en loop maken functie*/ -->
+
+                <div class="answers answer-1"><p>1</p></div>
+                <div class="answers answer-2"><p>2</p></div>
+                <div class="answers answer-3"><p>3</p></div>
+                <div class="answers answer-4"><p>4</p></div>
+                <div class="answers answer-5"><p>5</p></div>
+
+                <!-- selecteer en loop maken functie-->
                 <button class="btn-next">Volgende</button>
 
-                <!-- /* selecteer en loop maken */ -->
+                <!-- selecteer en loop maken-->
                 <button class="btn-prev">Vorige</button>
             </div>
         </div>
 
-        
 
-        <!-- als de laatste click op btn-next bevat alle beantw. vragen. -->
+
+
         <div class="show-score">
             <p>Gefeliciteerd je hebt ... vragen beantwoord!</p>
         </div>
 
-        <!-- /*score getoont.functie quiz laden via button start type reset-->
+
         <div class="quiz-nieuw">
             <button class="btn-redirect" id="btn-redirect-quiz">btn-redirect</button>
         </div>
