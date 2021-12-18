@@ -39,7 +39,8 @@ align-items: center;
     flex-direction: column;
 }
 .btn-reset,
-.btn-redirect,.show-quiz-btn {
+.btn-redirect,
+.start-quiz-btn {
     background-color: rgb(14, 91, 114);
     display: flex;
     justify-content: center;
@@ -50,7 +51,7 @@ align-items: center;
     border: none;
 }
 .btn-reset:hover,
-.btn-redirect:hover,.show-quiz-btn:hover{
+.btn-redirect:hover,.start-quiz-btn:hover{
     cursor: pointer;
     transition: ease 7ms;
     background-color: rgb(24, 157, 198);
