@@ -4,7 +4,7 @@
 }
 
 body {
-  background: #c7e5e6;
+  background: #97fcff;
   font-family: "Helvetica", Arial, sans-serif;
   color: rgb(0, 0, 0);
   font-family: 'Indie Flower', cursive;
@@ -35,9 +35,11 @@ display: flex;
 justify-content: center;
 align-items: center;
 }
+
 .container{
     flex-direction: column;
 }
+
 .btn-reset,
 .btn-redirect,
 .start-quiz-btn {
@@ -185,3 +187,17 @@ align-items: center;
     border: 5px solid;
     position: absolute;
 } */
+
+#questionHolder {
+    background-color: green;
+    width: 300px;
+    height: 300px;
+}
+
+#question {
+    background-color: blue;
+}
+
+.hide {
+    display: none;
+}
