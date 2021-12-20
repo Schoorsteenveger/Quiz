@@ -64,3 +64,14 @@ function clickPrev() {
 //     container.appendChild(next_btn);
 //     next_btn.onclick = () => { clickNext() }
 // }
+
+
+// var questionBox = document.createElement("div");
+// questionBox.setAttribute("id", "questionHolder");
+// document.body.appendChild(questionBox);
+// var questionElement = document.createElement("h3");
+// questionElement.setAttribute("id", "question");
+// var questionText = document.createTextNode("Is the sky blue?");
+// questionElement.appendChild(questionText);
+// questionBox.appendChild(questionElement);
+
