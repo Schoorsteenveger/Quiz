@@ -1,8 +1,8 @@
 const body = document.querySelector('body');
 body.classList.add('body');
+
 const container = document.querySelector('div');
 container.classList.add('.container');
-
 body.append(container);
 
 const startIntroText = document.createElement('startIntro');//nog stylen.
@@ -21,7 +21,7 @@ container.append(startQuizBtn);
 
 // const containerQuiz = document.querySelector('.container-quiz');
 const containerQuiz = document.createElement('div');
-containerQuiz.querySelector('container-quiz');
+containerQuiz.classList.add('.container-quiz');
 container.append(containerQuiz);
 
 const containerAll = document.createElement('div');
@@ -33,9 +33,9 @@ titleGame.innerText = 'Math Problem';
 containerAll.append(titleGame);
 
 const countQuestions = document.createElement('p');
-countQuestions.innerText = `Hier komt nog wat + ${countQuestions} dus.`;
+countQuestions.innerText = `${countQuestions} ... /6`;
 containerAll.append(countQuestions);
-console.log(countQuestions)
+console.log(countQuestions)// 
 
 const printQuestionDiv = document.createElement('div');
 printQuestionDiv.classList.add('print-question');
@@ -50,71 +50,105 @@ containerAll.append(printQuestionDiv);
 // divAnswers.append(numberText);
 
 // const answerText = document.createElement('div');
-const answer = document.createElement('p');
+
 
 const divAnswers = document.createElement('div');
 
+
+
+
 // 5 rijen aanmaken met nummers per vraag en de antwoorden.
-function giveMeFiveRows(divAnwers, answerText, numberText) {
+function giveMeFiveRows(divAnwers, answerText, numberBol) {
     for (let i = 0; i < 5; i++) {
         const divAnswers = document.createElement('div');
         divAnswers.classList.add('answers');
         containerAll.append(divAnswers);
 
-        const numberText = document.createElement('p');
-        numberText.innerText = "1";
-        divAnswers.append(numberText);
+        const numberBol = document.('p');
+        divAnswers.classList.add('p');
+        divAnswers.append(numberBol);
 
-        const answerText = document.createElement('p');
-        answerText.innerText = " Antwoord 1 etc";
-        divAnswers.append(answerText);
-        
-        
+
+        // const answerText = document.createElement('p');
+        // answerText.innerText = " Antwoord 1 etc";
+        // divAnswers.append(answerText);
     }
     
 }
 giveMeFiveRows(divAnswers)
+// buttons next & Prev.
 
 const btnPrevious = document.createElement('button');
 btnPrevious.classList.add('btn-prev');
 btnPrevious.innerText = 'Vorige';
 containerAll.appendChild(btnPrevious);
-// btnPrevious.addEventListener('click', clickLeft);
+btnPrevious.addEventListener('click', emptyDivs());
 
 const btnNext = document.createElement('button');
 btnNext.classList.add('btn-next');
 btnNext.innerText = 'Volgende';
 containerAll.appendChild(btnNext);
-// btnNext.addEventListener('click', clickRight);
+btnNext.addEventListener('click',emptyDivs());
 
 // Array of Answers & questions
 const questions = [
     {
-        question1: ["What is 49 - 32", "13", "17", "-17", "16", "697"],
+        question: "What is 49 - 32",
+        options: ["13", "17", "-17", "16", "697"],
         answer: "17"
     },
     {
-        question2: ["What is 70 - 14", "18", "79", "56", "32", "34"],
+        question: ["What is 70 - 14"],
+        options: ["18", "79", "56", "32", "34"],
         answer: "56"
     },
-    {
-        question3: ["What is 80 -15", "74", "65", "93", "40", "975"],
+    {   
+        question: ["What is 80 -15"],
+        options: ["74", "65", "93", "40", "975"],
         answer: "65"
     },
     {
-        question4: ["What is 10 - 20", "-350", "-15", "-10", "-34"],
+        question: ["What is 10 - 20"],
+        options: ["-350", "-15", "-10", "-34"],
         answer: "-10"
     },
     {
-        question5: ["What is 56 + 11", "102", "37", "44", "67", "50"],
+        question: ["What is 56 + 11"],
+        options: ["102", "37", "44", "67", "50"],
         answer: "67"
     },
     {
-        question5: ["What is 21 - 16", "170", "18", "5", "2", "26"],
+        question: ["What is 21 - 16"],
+        options: ["170", "18", "5", "2", "26"],
         answer: "5"
     }
 ]
 console.log(questions)
+
+function addQuestionsDom() {
+    const questionDiv = document.querySelector('.print-question');
+    const answersDivs = document.querySelectorAll('.answers'); // node-list loop nodig
+    questionDiv.innerText = questions[0].question
+    for (let i = 0; i < answersDivs.length; i++) {
+        answersDivs[i].innerText = questions[0].options[i];
+   
+    }
+
+}
+addQuestionsDom();
+
+//Leeg answer divs met data
+// function emptyAnswerDivs("click", ) {
+// if answersDivs[i]clickNext.appendChild[""];
+// }
+
+const emptyAnswerDivs = document.querySelector('.container-all');
+
+function emptyDivs() {
+    emptyAnswerDivs.innerHTML = "";
+}
+
+
 
 // Loop through questions
 // function startQuiz() {
@@ -122,33 +156,20 @@ console.log(questions)
 // }
 
 // Score to endScore
-let score = 0;
+// let score = 0;
 
-for (let i = 0; i < questions.length; i++){
-    let userResponse = questions[i].question1;
-    if (userResponse == questions[i].answer) {
-        score++;
-        console.log("Goed antwoord") // div groen kleuren
-    } else {
-       console.log("Sorry!"); //div rood kleuren + goede antwoord in groen tonen.
-    } 
-}
+// for (let i = 0; i < questions.length; i++){
+//     console.log(userResponse, questions[0])
+//     let userResponse = questions[0].options;
+//     if (userResponse == questions[0].options) {
+//         score++;
+//         console.log("Goed antwoord") // div groen kleuren
+//     } else {
+//        console.log("Sorry!"); //div rood kleuren + goede antwoord in groen tonen.
+//     } 
+// }
  
 
-
-// function constructButtons() {
-//     const prev_btn = document.createElement('button');
-//     prev_btn.classList.add('prev_btn', 'btn');
-//     prev_btn.innerText = 'vorige';
-//     container.appendChild(prev_btn);
-//     prev_btn.onclick = () => { clickPrev() }
-
-//     const next_btn = document.createElement('button');
-//     next_btn.classList.add('next_btn', 'btn');
-//     next_btn.innerText = 'volgende';
-//     container.appendChild(next_btn);
-//     next_btn.onclick = () => { clickNext() }
-// }
 
 
 
