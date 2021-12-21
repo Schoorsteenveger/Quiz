@@ -9,17 +9,17 @@ const startIntroText = document.createElement('startIntro');//nog stylen.
 startIntroText.innerText = 'Welkom bij deze Quiz'
 container.append(startIntroText);
 
-const startQuizBtn = document.querySelector('start-quiz-btn');
-container.append(startQuizBtn);
+// const startQuizBtn = document.querySelector('start-quiz-btn');
+// container.append(startQuizBtn);
 
-// startQuizBtn.addEventListener('click', startQuiz())
-    
-// onclick toggle onzichtbaar? en show quiz.
-//Functie om button te hiden en quiz starten:
+// Start Quiz
+function startQuiz() {
+    const startQuizBtn = document.querySelector('start-quiz-btn');
+    container.append(startQuizBtn);
+    //remove when quiz starts
+}
 
-
-
-// const containerQuiz = document.querySelector('.container-quiz');
+// kleiner schrijven?
 const containerQuiz = document.createElement('div');
 containerQuiz.classList.add('.container-quiz');
 container.append(containerQuiz);
@@ -41,54 +41,75 @@ const printQuestionDiv = document.createElement('div');
 printQuestionDiv.classList.add('print-question');
 containerAll.append(printQuestionDiv);
 
-
-// divAnswers.classList.add('answers');
-// containerAll.append(divAnswers);
-
-// const numberText = document.createElement('p');
-// numberText.innerText = "1";
-// divAnswers.append(numberText);
-
-// const answerText = document.createElement('div');
-
-
 const divAnswers = document.createElement('div');
 
-
-
-
 // 5 rijen aanmaken met nummers per vraag en de antwoorden.
-function giveMeFiveRows(divAnwers, answerText, numberBol) {
+function giveMeFiveRows(divAnswers, numberBol) {
     for (let i = 0; i < 5; i++) {
         const divAnswers = document.createElement('div');
         divAnswers.classList.add('answers');
         containerAll.append(divAnswers);
 
-        const numberBol = document.('p');
-        divAnswers.classList.add('p');
-        divAnswers.append(numberBol);
+        // const numberBol = document.createElement('p');
+        // numberBol.classList.add('p');
+        // numberBol.innerText= "ja doei, ik ga koken!"
+        // divAnswers.append(numberBol);
 
-
-        // const answerText = document.createElement('p');
-        // answerText.innerText = " Antwoord 1 etc";
-        // divAnswers.append(answerText);
     }
     
 }
 giveMeFiveRows(divAnswers)
 // buttons next & Prev.
 
-const btnPrevious = document.createElement('button');
-btnPrevious.classList.add('btn-prev');
-btnPrevious.innerText = 'Vorige';
-containerAll.appendChild(btnPrevious);
-btnPrevious.addEventListener('click', emptyDivs());
+// const btnPrevious = document.createElement('button');
+// btnPrevious.classList.add('btn-prev');
+// btnPrevious.innerText = 'Vorige';
+// containerAll.appendChild(btnPrevious);
+// // btnPrevious.addEventListener('click', emptyDivs());
 
-const btnNext = document.createElement('button');
-btnNext.classList.add('btn-next');
-btnNext.innerText = 'Volgende';
-containerAll.appendChild(btnNext);
-btnNext.addEventListener('click',emptyDivs());
+
+// const btnNext = document.createElement('button');
+// btnNext.classList.add('btn-next');
+// btnNext.innerText = 'Volgende';
+// containerAll.appendChild(btnNext);
+// // btnNext.addEventListener('click',emptyDivs());
+
+//Leeg answer divs met data
+// Function click btns previous and next
+function loopButtons() {
+    let btnPrevious = document.createElement('button');
+    btnPrevious.classList.add('btn-prev');
+    btnPrevious.innerText = 'Vorige';
+    containerAll.appendChild(btnPrevious);
+    btnPrevious.onclick = function () {
+        if (questions[i] === 1) {
+            return
+        }
+        questions--
+        divAnswers.innerHTML = "";
+        startQuizBtn()
+    }
+    let btnNext = document.createElement('button');
+    btnNext.classList.add('btn-next');
+    btnNext.innerText = 'Volgende';
+    containerAll.appendChild(btnNext);
+    btnNext.onclick = function () {
+    questions++
+    if (questions > 5) {
+        questions = 1
+    }
+    emptyAnswerDivs.innerHTML = "";
+    startQuiz()
+    } 
+    container.append(questions);
+}
+loopButtons()
+
+
+const emptyAnswerDivs = document.querySelector('.print-question', '.answers');
+function emptyDivs() {
+    emptyAnswerDivs.innerHTML = "";
+}
 
 // Array of Answers & questions
 const questions = [
@@ -103,7 +124,7 @@ const questions = [
         answer: "56"
     },
     {   
-        question: ["What is 80 -15"],
+        question: ["What is 80 - 15"],
         options: ["74", "65", "93", "40", "975"],
         answer: "65"
     },
@@ -125,6 +146,7 @@ const questions = [
 ]
 console.log(questions)
 
+// Index vragen in de dom zetten
 function addQuestionsDom() {
     const questionDiv = document.querySelector('.print-question');
     const answersDivs = document.querySelectorAll('.answers'); // node-list loop nodig
@@ -137,22 +159,9 @@ function addQuestionsDom() {
 }
 addQuestionsDom();
 
-//Leeg answer divs met data
+
 // function emptyAnswerDivs("click", ) {
 // if answersDivs[i]clickNext.appendChild[""];
-// }
-
-const emptyAnswerDivs = document.querySelector('.container-all');
-
-function emptyDivs() {
-    emptyAnswerDivs.innerHTML = "";
-}
-
-
-
-// Loop through questions
-// function startQuiz() {
-    
 // }
 
 // Score to endScore
