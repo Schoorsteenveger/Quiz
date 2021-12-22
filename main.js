@@ -56,23 +56,23 @@ function giveMeFiveRows(divAnswers, numberBol) {
         // divAnswers.append(numberBol);
 
     }
-    
+
 }
 giveMeFiveRows(divAnswers)
 // buttons next & Prev.
 
-// const btnPrevious = document.createElement('button');
-// btnPrevious.classList.add('btn-prev');
-// btnPrevious.innerText = 'Vorige';
-// containerAll.appendChild(btnPrevious);
-// // btnPrevious.addEventListener('click', emptyDivs());
+const btnPrevious = document.createElement('button');
+btnPrevious.classList.add('btn-prev');
+btnPrevious.innerText = 'Vorige';
+containerAll.appendChild(btnPrevious);
+// btnPrevious.addEventListener('click', emptyDivs());
 
 
-// const btnNext = document.createElement('button');
-// btnNext.classList.add('btn-next');
-// btnNext.innerText = 'Volgende';
-// containerAll.appendChild(btnNext);
-// // btnNext.addEventListener('click',emptyDivs());
+const btnNext = document.createElement('button');
+btnNext.classList.add('btn-next');
+btnNext.innerText = 'Volgende';
+containerAll.appendChild(btnNext);
+// btnNext.addEventListener('click',emptyDivs());
 
 //Leeg answer divs met data
 // Function click btns previous and next
@@ -94,13 +94,13 @@ function loopButtons() {
     btnNext.innerText = 'Volgende';
     containerAll.appendChild(btnNext);
     btnNext.onclick = function () {
-    questions++
-    if (questions > 5) {
-        questions = 1
+        questions++
+        if (questions > 5) {
+            questions = 1
+        }
+        emptyAnswerDivs.innerHTML = "";
+        startQuiz()
     }
-    emptyAnswerDivs.innerHTML = "";
-    startQuiz()
-    } 
     container.append(questions);
 }
 loopButtons()
@@ -123,7 +123,7 @@ const questions = [
         options: ["18", "79", "56", "32", "34"],
         answer: "56"
     },
-    {   
+    {
         question: ["What is 80 - 15"],
         options: ["74", "65", "93", "40", "975"],
         answer: "65"
@@ -153,7 +153,7 @@ function addQuestionsDom() {
     questionDiv.innerText = questions[0].question
     for (let i = 0; i < answersDivs.length; i++) {
         answersDivs[i].innerText = questions[0].options[i];
-   
+
     }
 
 }
@@ -177,21 +177,5 @@ addQuestionsDom();
 //        console.log("Sorry!"); //div rood kleuren + goede antwoord in groen tonen.
 //     } 
 // }
- 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let newElement = document.createElement('div');
-// console.dir(newElement);

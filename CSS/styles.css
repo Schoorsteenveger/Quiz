@@ -202,16 +202,6 @@ p.container-all {
     position: absolute;
 } */
 
-#questionHolder {
-    background-color: green;
-    width: 300px;
-    height: 300px;
-}
-
-#question {
-    background-color: blue;
-}
-
 .hide {
     display: none;
 }
