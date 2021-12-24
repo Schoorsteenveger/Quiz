@@ -12,6 +12,7 @@ let quizQuestion;
 let answerList;
 let pageCounter;
 
+
 // Startbutton & intro text
 
 const startQuizBtn = document.createElement('button');
@@ -43,9 +44,11 @@ function startQuiz() {
 function addHeaderGame() {
     const titleGame = document.createElement('h2');
     titleGame.innerText = 'Math Problem';
-    const countQuestions = document.createElement('p');
-    countQuestions.innerText = `${countQuestions}... /6`;
-    containerQuiz.append(titleGame, countQuestions);
+    const pageCounter = document.createElement('p');
+    // containerQuiz.innerText = `${pageCounter}/6`;
+    containerQuiz.innerText = `This is the current state ${currentQuestionIndex} / 6`;
+    console.log(currentQuestionIndex + 1);
+    containerQuiz.append(titleGame, pageCounter);
     containerAll.append(containerQuiz);
 }
 addHeaderGame();
@@ -90,7 +93,7 @@ const quizContent = [
 // Add quiz content to Dom
 
 function addQuizContent() {
-    const divQuestions = document.createElement('div');
+    divQuestions = document.createElement('div');
     divQuestions.classList.add('print-question');
     divQuestions.querySelector('.answers');
     containerQuiz.append(divQuestions);
@@ -124,17 +127,36 @@ const btnPrevious = document.createElement('button');
 btnPrevious.classList.add('btn-prev');
 btnPrevious.innerText = 'Vorige';
 containerButtons.appendChild(btnPrevious);
-btnPrevious.addEventListener('click', getPreviousQuestions);
+// btnPrevious.addEventListener('click',getPreviousQuestions);
 
 const btnNext = document.createElement('button');
 btnNext.classList.add('btn-next');
 btnNext.innerText = 'Volgende';
 containerButtons.appendChild(btnNext);
-btnNext.addEventListener('click', getNextQuestions);
+btnNext.addEventListener('click',getNextQuestions);
 // btnNext.addEventListener('click',emptyDivs());
 
 // Get next & previous questions
 
+function getNextQuestions() {
+    currentQuestionIndex++ // +1 volgende vraag
+    // console.log(currentQuestionIndex++);
+    // console.log(currentQuestionIndex);
+    divQuestions.innerText = quizContent[currentQuestionIndex].question;
+    divAnswers = document.querySelectorAll(".answers");
+
+    for (let i = 0; i < quizContent.length; i++);
+        divAnswers.forEach(function (options, index) {
+        divAnswers[index].innerText =
+            quizContent[currentQuestionIndex].options[index];
+            console.log(quizContent[currentQuestionIndex].options[index])
+        });
+
+    if (currentQuestionIndex >= quizContent.length);
+    console.log(currentQuestionIndex)
+    // restartQuiz();
+
+}
 
 //  5 rijen aanmaken met nummers per vraag en de antwoorden.
 // function giveMeFiveRows() {
