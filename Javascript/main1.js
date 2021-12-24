@@ -35,7 +35,7 @@ console.log(divAnswers);
 
 const answerNumbers = document.createElement('p');
 answerNumbers.querySelector('.p');
-answerNumbers.classList.add('p');
+answerNumbers.classList.add('p'); //overbrengen nog
 
 const btnPrevious = document.createElement('button');
 btnPrevious.classList.add('btn-prev');
@@ -57,10 +57,10 @@ function startQuiz() {
     startIntroText.classList = ('hide');
     containerQuiz.classList.remove("hide");
     container.append(containerQuiz);
-    containerQuiz.append(containerAll, btnNext, btnPrevious);
+    containerQuiz.append(containerAll, btnPrevious, btnNext);
     containerAll.append(titleGame, countQuestions, printQuestionDiv, divAnswers);
     Index = 0;
-    addQuestionsDom();
+    addQuestionsDom(0);
     
 }
 
@@ -104,16 +104,19 @@ const questions = [
 
 // add quiz to dom
 
-function addQuestionsDom() {
-    const questionDiv = document.querySelector('.print-question');
+function addQuestionsDom(index) {
+    const printQuestionDiv = document.querySelector('.print-question');
     const divAnswers = document.querySelectorAll('.answers'); // node-list loop nodig
-    questionDiv.innerText = questions[0].question
-    // console.log(questions[1,2,3].question)
+    console.log(printQuestionDiv);
+    // console.log(questions[index].question);
+    console.log(questions);
+    printQuestionDiv.innerText = questions[index].question
+    console.log(questions[1,2,3].question)
     // console.log(questionDiv.innerText);
     // console.log(questions[1].question);
     for (let i = 0; i < divAnswers.length; i++) {
         
-        divAnswers[i].innerText = questions[0].options[i];
+        divAnswers[i].innerText = questions[index].options[i];
 
     }
     giveMeFiveRows()
@@ -130,7 +133,7 @@ function giveMeFiveRows() {
 
     }
 }
-giveMeFiveRows(divAnswers);
+giveMeFiveRows();
 
 // Index vragen in de dom zetten
 // function addQuestionsDom() {
@@ -149,6 +152,45 @@ giveMeFiveRows(divAnswers);
 // }
 // addQuestionsDom();
 // console.log(addQuestionsDom()); // Hergebruiken in functie om index currentquestion te komen.
+btnNext.addEventListener("click", getNextQuizQuestion);
+
+// function getNextQuizQuestion() {
+//     // laad juiste data zoals in startquiz
+//     startQuizBtn.classList.add('hide');
+//     startIntroText.classList = ('hide');
+//     containerQuiz.classList.remove("hide");
+    
+//     // doe dingen
+
+//     const divAnswers = document.querySelectorAll('.answers');
+//     const printQuestionDiv = document.querySelector('.print-question');
+//     // append questiondiv
+//     container.append(containerQuiz);
+//     containerQuiz.append(containerAll, btnNext, btnPrevious);
+//     containerAll.append(titleGame, countQuestions, printQuestionDiv, divAnswers);
+    
+//     console.log(printQuestionDiv);
+//     printQuestionDiv.classList.add('answers');
+//     containerAll.append(printQuestionDiv);
+//     // for loop -->
+//     for (i = 0; i < printQuestionDiv.length; i++){
+//         printQuestionDiv.innerText = questions[i]questions;
+//     };
+
+    
+//     addQuestionsDom();
+// }
+
+
+
+// if (i === 0) {
+//     return questions[currentIndex];
+// } else if (i < 0) {
+//     return theArray[(currentIndex + theArray.length + i) % theArray.length];
+// } else if (i > 0) {
+//     return theArray[(currentIndex + i) % theArray.length];
+// }
+//     // someFunction()
 
 
 

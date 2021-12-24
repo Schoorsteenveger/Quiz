@@ -1,10 +1,12 @@
-
+ @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+ :root {
+     background-color:#97fcff ;
+ }
 * {
   box-sizing: border-box;
 }
 
 body {
-  background: #97fcff;
   font-family: "Helvetica", Arial, sans-serif;
   color: rgb(0, 0, 0);
   font-family: 'Indie Flower', cursive;
@@ -35,7 +37,7 @@ align-items: center;
 flex-direction: column;
 }
 
-.container-quiz {
+.container-all {
     background-color: blue;
     display: flex;
     width: 100%;
@@ -79,7 +81,7 @@ flex-direction: column;
     transition: ease 7ms;
 }
 
-.container-all {
+.container-quiz {
     width: 600px;
     height: 100%;
     /* min-width: 30em;
