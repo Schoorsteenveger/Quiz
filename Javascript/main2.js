@@ -8,8 +8,8 @@ container.append(containerAll);
 containerAll.classList.add('hide');
 
 let currentQuestionIndex;
-let quizQuestion;
-let answerList;
+let divQuestion;
+let divAnswers;
 let pageCounter;
 
 
@@ -37,6 +37,7 @@ function startQuiz() {
     containerQuiz.classList.remove("hide");
     currentQuestionIndex = 0;
     addQuizContent();
+    // console.log('started')
 }
 
 // Add Title, Counter 
@@ -46,8 +47,7 @@ function addHeaderGame() {
     titleGame.innerText = 'Math Problem';
     const pageCounter = document.createElement('p');
     // containerQuiz.innerText = `${pageCounter}/6`;
-    containerQuiz.innerText = `This is the current state ${currentQuestionIndex} / 6`;
-    console.log(currentQuestionIndex + 1);
+    pageCounter.innerText = `${currentQuestionIndex} / 6`;
     containerQuiz.append(titleGame, pageCounter);
     containerAll.append(containerQuiz);
 }
@@ -88,35 +88,26 @@ const quizContent = [
         answer: "5"
     }
 ];
-// console.log(quizContent);
 
 // Add quiz content to Dom
 
 function addQuizContent() {
-    divQuestions = document.createElement('div');
-    divQuestions.classList.add('print-question');
-    divQuestions.querySelector('.answers');
-    containerQuiz.append(divQuestions);
     //add questions
-    divQuestions.innerText = quizContent[currentQuestionIndex].question;
+    divQuestion = document.createElement('div');
+    divQuestion.classList.add('print-question');
+    divQuestion.querySelector('.answers');
+    containerQuiz.append(divQuestion);
+    divQuestion.innerText = quizContent[currentQuestionIndex].question;
 
-    // Add list numbers
-    // const divNumbers = document.createElement('p');
-    // containerQuiz.querySelector('.p')
-    // containerQuiz.classList.add('p');
-    // containerQuiz.append(divNumbers);
-    // divNumbers.innerText = 'p';
-
-    //loop to add the answers + divs
-    for (let option of quizContent[currentQuestionIndex].options) {
-        const divAnswers = document.createElement('div'); //moet dit al in d ehtml te kiezen zijn.
+    //loop add the answers + div
+    for (let options of quizContent[currentQuestionIndex].options) {
+        const divAnswers = document.createElement('div'); //moet dit al in de html te kiezen zijn.
         divAnswers.classList.add('answers');
         divAnswers.querySelector('.answers');
         containerQuiz.append(divAnswers);
-        divAnswers.innerText = option;
-
-        // printAnswers.addEventListener("click", selectAnswer);
+        divAnswers.innerText = options;
     }
+    
     // giveMeFiveRows();
 }
 
@@ -127,7 +118,7 @@ const btnPrevious = document.createElement('button');
 btnPrevious.classList.add('btn-prev');
 btnPrevious.innerText = 'Vorige';
 containerButtons.appendChild(btnPrevious);
-// btnPrevious.addEventListener('click',getPreviousQuestions);
+btnPrevious.addEventListener('click', getPreviousQuestions);
 
 const btnNext = document.createElement('button');
 btnNext.classList.add('btn-next');
@@ -140,23 +131,48 @@ btnNext.addEventListener('click',getNextQuestions);
 
 function getNextQuestions() {
     currentQuestionIndex++ // +1 volgende vraag
-    // console.log(currentQuestionIndex++);
-    // console.log(currentQuestionIndex);
-    divQuestions.innerText = quizContent[currentQuestionIndex].question;
+    divQuestion.innerText = quizContent[currentQuestionIndex].question;
     divAnswers = document.querySelectorAll(".answers");
+
+    // pageCounter.innerText = `${currentQuestionIndex + 1}/ 6`;
 
     for (let i = 0; i < quizContent.length; i++);
         divAnswers.forEach(function (options, index) {
-        divAnswers[index].innerText =
-            quizContent[currentQuestionIndex].options[index];
+        divAnswers[index].innerText = quizContent[currentQuestionIndex].options[index];
             console.log(quizContent[currentQuestionIndex].options[index])
+            
         });
-
-    if (currentQuestionIndex >= quizContent.length);
+    // Is de vraag al beantwoord, toon result goed en fout.
+    // toon current vraagnummer in pagecounter
+    // aan het einde van vraag 5 score tonen op resultpagina.
+    // if (currentQuestionIndex >= quizContent.length);
     console.log(currentQuestionIndex)
     // restartQuiz();
 
 }
+
+
+function getPreviousQuestions() {
+    currentQuestionIndex--;
+    divQuestion.innerText = quizContent[currentQuestionIndex].question;
+    // divAnswers = document.querySelectorAll(".answers").click();
+    console.log(divAnswers)
+    // pageCounter.innerText = `${currentQuestionIndex + 1}/ 6`;
+    
+    for (let i = 0; i < divAnswers.length; i++) {
+        divAnswers.forEach(function (options, index) {
+            divAnswers[index].innerText = quizContent[currentQuestionIndex].options[index];
+        });
+    }
+} 
+
+// Select question on clicking option divs
+
+let selectAnswers = document.querySelectorAll('.answers');
+selectAnswers.addEventListener("click",(event) => {
+    console.log("Clicked");
+})
+
 
 //  5 rijen aanmaken met nummers per vraag en de antwoorden.
 // function giveMeFiveRows() {
