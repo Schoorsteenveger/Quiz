@@ -143,7 +143,6 @@ p.container-all {
     z-index:2;
 }
 
-
 /*bolletje links op even*/
 .answers:nth-child(even)::before{
     content: "";

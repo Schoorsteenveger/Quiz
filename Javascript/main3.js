@@ -7,11 +7,12 @@ const containerQuiz = document.createElement('div');
 containerQuiz.classList.add('container-quiz');
 container.append(containerAll);
 containerAll.classList.add('hide');
-const pageCounter = document.createElement('p');
 
-let currentQuestionIndex = 1;
+let currentQuestionIndex;
 let divQuestion;
 let divAnswers;
+let pageCounter;
+
 
 // Startbutton & intro text
 
@@ -35,7 +36,7 @@ function startQuiz() {
     startIntroText.classList.add('hide');
     containerAll.classList.remove('hide');
     containerQuiz.classList.remove("hide");
-    // currentQuestionIndex = 0;
+    currentQuestionIndex = 0;
     addQuizContent();
     // console.log('started')
 }
@@ -45,7 +46,9 @@ function startQuiz() {
 function addHeaderGame() {
     const titleGame = document.createElement('h2');
     titleGame.innerText = 'Math Problem';
-    pageCounter.innerText = currentQuestionIndex + "/ 6";
+    const pageCounter = document.createElement('p');
+    // containerQuiz.innerText = `${pageCounter}/6`;
+    pageCounter.innerText = `${currentQuestionIndex} / 6`;
     containerQuiz.append(titleGame, pageCounter);
     containerAll.append(containerQuiz);
 }
@@ -87,30 +90,28 @@ const quizContent = [
     }
 ];
 
-// Add quizcontent to Dom. Questions & answers.
+// Add quizcontent to Dom
 
 function addQuizContent() {
     //add questions
     divQuestion = document.createElement('div');
     divQuestion.classList.add('print-question');
-    const singleAnswerbox = document.createElement('div');
-    singleAnswerbox.classList.add('singleAnswerbox');
-
-    // divQuestion.querySelector('.answers');
-    containerQuiz.append(divQuestion, singleAnswerbox);
-    divQuestion.innerText = quizContent[currentQuestionIndex-1].question;
-    console.log(divQuestion)
-    
+    divQuestion.querySelector('.answers');
+    containerQuiz.append(divQuestion);
+    divQuestion.innerText = quizContent[currentQuestionIndex].question;
 
     //loop add the answers + div
-
-    for (let options of quizContent[currentQuestionIndex - 1].options) {
+    for (let options of quizContent[currentQuestionIndex].options) {
         const divAnswers = document.createElement('div'); //moet dit al in de html te kiezen zijn.
         divAnswers.classList.add('answers');
-        // divAnswers.querySelector('.answers');
-        singleAnswerbox.append(divAnswers);
+        divAnswers.querySelector('.answers');
+        divAnswers.id = "SelectAnswerClick";
+        console.log("Print this element: ", divAnswers);
+        containerQuiz.append(divAnswers);
         divAnswers.innerText = options;
     }
+    
+    // giveMeFiveRows();
 
 }
 
@@ -128,32 +129,31 @@ const btnNext = document.createElement('button');
 btnNext.classList.add('btn-next');
 btnNext.innerText = 'Volgende';
 containerButtons.appendChild(btnNext);
-btnNext.addEventListener('click', getNextQuestions);
+btnNext.addEventListener('click',getNextQuestions);
 // btnNext.addEventListener('click',emptyDivs());
 
 // Get next questions
 
 function getNextQuestions() {
     currentQuestionIndex++ // +1 volgende vraag
-    divQuestion.innerText = quizContent[currentQuestionIndex-1].question;
+    divQuestion.innerText = quizContent[currentQuestionIndex].question;
     divAnswers = document.querySelectorAll(".answers");
-    // pageCounter.innerText = `${currentQuestionIndex + 1}/ 6`;
-    pageCounter.innerText = currentQuestionIndex + "/ 6";
 
+    // pageCounter.innerText = `${currentQuestionIndex + 1}/ 6`;
     // All options length
     for (let i = 0; i < quizContent.length; i++);
-    divAnswers.forEach(function (options, index) {
-        divAnswers[index].innerText = quizContent[currentQuestionIndex-1].options[index];
-    });
+        divAnswers.forEach(function (options, index) {
+        divAnswers[index].innerText = quizContent[currentQuestionIndex].options[index];           
+        });
     // Clickevent op options div divAnswers
-
+    divAnswers.id = quizContent[currentQuestionIndex].options
     // console.log(divAnswers.id) //werkt
+    selectAnswer()
     // Is de vraag al beantwoord, toon result goed en fout.
     // toon current vraagnummer in pagecounter
     // aan het einde van vraag 5 score tonen op resultpagina.
     // if (currentQuestionIndex >= quizContent.length);
     console.log(currentQuestionIndex)
-    console.log(divAnswers);
     // restartQuiz();
 
 }
@@ -161,43 +161,45 @@ function getNextQuestions() {
 
 function getPreviousQuestions() {
     currentQuestionIndex--;
-    divQuestion.innerText = quizContent[currentQuestionIndex-1].question;
+    divQuestion.innerText = quizContent[currentQuestionIndex].question;
     // divAnswers = document.querySelectorAll(".answers").click();
     console.log(divAnswers)
-    pageCounter.innerText = currentQuestionIndex + "/ 6";
     // pageCounter.innerText = `${currentQuestionIndex + 1}/ 6`;
-
+    
     for (let i = 0; i < divAnswers.length; i++) {
         divAnswers.forEach(function (options, index) {
             divAnswers[index].innerText = quizContent[currentQuestionIndex].options[index];
         });
     }
-}
+} 
 
 
 // Select question on clicking option divs and color correct and wrong answers
-
-// const bclick = document.getElementById('clickme');
-// bclick.addEventListener('click', function red() {
-//     container.style.backgroundColor = 'red';
+// const userChoice = document.querySelectorAll('SelectAnswerClick');
+// userChoice.addEventListener('click', function green() {
+//     divAnswers.style.backgroundColor = 'green';
 // });
 
+const bclick = document.getElementById('clickme');
+bclick.addEventListener('click', function red() {
+    container.style.backgroundColor = 'red';
+});
+
+divAnswers.id = "SelectAnswerClick";
+// console.log("Print this element: ", divAnswers);
 
 function selectAnswer() {
-    const singleAnswerbox = document.querySelector('.singleAnswerbox');
-    singleAnswerbox.children.forEach((child) => {
-        const userChoice = child.textContent;
-        console.log(userChoice);
-    });
-    // divAnswers.addEventListener()
-    // userChoice.addEventListener('click', function green() {
-    //     divAnswers.style.backgroundColor = 'green';
-
-    // });
+divAnswers.id === quizContent[currentQuestionIndex].options
+console.log(divAnswers.id) //werkt
+    divAnswers.addEventListener('click', (event) => {
+        if (currentQuestionIndex === event.target.textContent) {
+            console.log("Correct answer");
+        }
+        else {
+            console.log("wrong answer");
+        }
+    })
 }
-    selectAnswer();
-
-
 
 
 
