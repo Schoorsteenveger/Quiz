@@ -112,7 +112,32 @@ function addQuizContent() {
         divAnswers.innerText = options;
     }
 
+    //Empty div on get next question
+    const emptyAnswerDivs = document.querySelector('.print-question', '.answers');
+    function emptyDivs() {
+        emptyAnswerDivs.innerHTML = "";
+    }
+
+    singleAnswerbox.childNodes.forEach((child) => {
+        const userChoice = child.firstChild.textContent;
+        console.log(userChoice);
+        child.addEventListener('click', () => {
+            console.log('click test')
+            if (userChoice === quizContent[currentQuestionIndex - 1].answer) {
+                child.style.backgroundColor = 'green';
+            } else {
+                child.style.backgroundColor = 'red';
+            }
+            emptyDivs();
+            // addQuizContent();
+        })
+    });
+    // console.log(child)
 }
+
+
+
+console.log(quizContent[currentQuestionIndex - 1].answer)
 
 // Add button previous
 const containerButtons = document.createElement('div');
@@ -174,42 +199,17 @@ function getPreviousQuestions() {
     }
 }
 
+// function selectAnswer() {
+//     const singleAnswerbox = document.querySelector('.singleAnswerbox');
+//     singleAnswerbox.childNodes.forEach((child) => {
+//         const userChoice = child.firstChild.nodeValue;
+//         console.log(userChoice);
+//     });
+//     // divAnswers.addEventListener()
+//     // userChoice.addEventListener('click', function green() {
+//     //     divAnswers.style.backgroundColor = 'green';
 
-// Select question on clicking option divs and color correct and wrong answers
-
-// const bclick = document.getElementById('clickme');
-// bclick.addEventListener('click', function red() {
-//     container.style.backgroundColor = 'red';
-// });
-
-
-function selectAnswer() {
-    const singleAnswerbox = document.querySelector('.singleAnswerbox');
-    singleAnswerbox.children.forEach((child) => {
-        const userChoice = child.textContent;
-        console.log(userChoice);
-    });
-    // divAnswers.addEventListener()
-    // userChoice.addEventListener('click', function green() {
-    //     divAnswers.style.backgroundColor = 'green';
-
-    // });
-}
-    selectAnswer();
-
-
-
-
-
-
-//  5 rijen aanmaken met nummers per vraag en de antwoorden.
-// function giveMeFiveRows() {
-//     for (let i = 0; i < 5; i++) {
-//         const divAnswers = document.createElement('div');
-//         divAnswers.classList.add('answers');
-//         containerQuiz.append(divAnswers);
-
-//     }
+//     // });
 // }
-// // giveMeFiveRows(divAnswers);
+//     // selectAnswer();
 
